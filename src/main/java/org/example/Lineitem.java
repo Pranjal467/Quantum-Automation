@@ -125,68 +125,34 @@ public class Lineitem {
         Thread.sleep(3000);
         actions.sendKeys(Keys.ENTER).perform();
 
+        Thread.sleep(1000);
 
-        actions.sendKeys(Keys.)
+        actions.keyDown(Keys.SHIFT)
+                .sendKeys(Keys.TAB)
+                .keyUp(Keys.SHIFT)
+                .perform();
 
-
-
-
-
-
-
-
-
+        WebElement intervals = driver.switchTo().activeElement();
+        intervals.sendKeys("1");
 
 
-
-
-        WebElement interval = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("select_value_label_1818")));
-        interval.click();
-        actions.sendKeys(Keys.ENTER);
-
-        WebElement intervalValue = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("SearchDateRange")));
-        intervalValue.sendKeys("2");
 
         WebElement searchButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"contract-master-search-form\"]/div[2]/div/div[2]/div/button[1]")));
         searchButton.click();
 
-        WebElement selectFaceCheckBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"masterCheckbox\"]/div[1]")));
-        selectFaceCheckBox.click();
+       /* WebElement selectFaceCheckBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"masterCheckbox\"]/div[1]")));
+        selectFaceCheckBox.click(); */
+
+        for(int i = 0 ; i < 9 ; i++ ){
+            actions.sendKeys(org.openqa.selenium.Keys.TAB).perform();
+            Thread.sleep(500);
+        }
+        Thread.sleep(3000);
+
+        actions.sendKeys(Keys.ENTER).perform();
 
         WebElement addFaceToContract = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"addfaces\"]/div[1]/button")));
         addFaceToContract.click();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

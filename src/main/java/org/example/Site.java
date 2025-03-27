@@ -14,17 +14,9 @@ public class Site {
         driver.get("https://quantumuat.billboardplanet.com/");
         driver.manage().window().maximize();
 
+        Login_generic.performLogin(driver);
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-
-        WebElement usernameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Username")));
-        usernameField.sendKeys("pranjal");
-
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Password")));
-        passwordField.sendKeys("stage@BBP20");
-
-        WebElement loginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loginButton")));
-        loginButton.click();
 
         // Above code is for the login purpose
 
@@ -40,7 +32,7 @@ public class Site {
         addNewSite.click();
 
         WebElement vendorSiteId = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("vendorSiteID")));
-        vendorSiteId.sendKeys("Test KTM Site 3");
+        vendorSiteId.sendKeys("Test KTM Site 5");
 
 
         //StateCode

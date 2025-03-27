@@ -19,14 +19,7 @@ public class Contract {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 
-        WebElement usernameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Username")));
-        usernameField.sendKeys("pranjal");
-
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Password")));
-        passwordField.sendKeys("stage@BBP20");
-
-        WebElement loginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loginButton")));
-        loginButton.click();
+        Login_generic.performLogin(driver);
 
         //above code is for the login purpose
 
