@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Scanner;
 
 public class Contract {
 
@@ -17,7 +18,7 @@ public class Contract {
         driver.manage().window().maximize();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-
+        Scanner scanner = new Scanner(System.in);
 
         Login_generic.performLogin(driver);
 
@@ -39,17 +40,21 @@ public class Contract {
             Thread.sleep(500);  // Optionally, add a delay between tab presses (adjust as necessary)
         }
 
+        System.out.println("Enter the Client Contract Number");
+        String clientContractNumberValue = scanner.nextLine();
         // Now that we're at the target element, send a value (e.g., entering text into an input field)
         WebElement targetElement = driver.switchTo().activeElement();  // Get the active element
-        targetElement.sendKeys("Test KTM 21 March C 1");  //Entering Client contract number
+        targetElement.sendKeys(clientContractNumberValue);  //Entering Client contract number
 
 
-       WebElement advertiserClient = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("addAdv")));
+        WebElement advertiserClient = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("addAdv")));
         advertiserClient.click();
 
+        System.out.println("Enter the Search Advertiser");
+        String searchAdvertiserValue =scanner.nextLine();
 
         WebElement searchAdvertiser = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("addAdvGridInput")));
-        searchAdvertiser.sendKeys("zara");
+        searchAdvertiser.sendKeys(searchAdvertiserValue);
         Thread.sleep(5000);
         searchAdvertiser.sendKeys(Keys.ENTER);
 
@@ -67,6 +72,8 @@ public class Contract {
 
 
 
+
     }
 }
+
 

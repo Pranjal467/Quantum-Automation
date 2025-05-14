@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Scanner;
 
 public class Site {
     public static void  main(String []args) throws InterruptedException {
@@ -13,6 +14,7 @@ public class Site {
         WebDriver driver = new ChromeDriver();
         driver.get("https://quantumuat.billboardplanet.com/");
         driver.manage().window().maximize();
+        Scanner scanner = new Scanner(System.in);
 
         Login_generic.performLogin(driver);
 
@@ -31,8 +33,10 @@ public class Site {
         WebElement addNewSite = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"content\"]/div/div/div/div/div/div/md-content/div[2]/button[1]/span[3]/span")));
         addNewSite.click();
 
+        System.out.println("Enter Vendor Site ID: ");
+        String vendorSiteIDValue = scanner.nextLine();
         WebElement vendorSiteId = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("vendorSiteID")));
-        vendorSiteId.sendKeys("Test KTM Site 5");
+        vendorSiteId.sendKeys(vendorSiteIDValue);
 
 
         //StateCode
@@ -48,5 +52,9 @@ public class Site {
 
         WebElement saveNewSite = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"contract-master-form\"]/div/div/ul[1]/li/button/span/span")));
         saveNewSite.click();
+
+        WebElement errorMessageTrial = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"toast-container\"]/div/div[1]/button")));
+        errorMessageTrial.click();
+
     }
 }

@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Scanner;
 
-public class Lineitem {
+public class Production {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
@@ -34,18 +34,16 @@ public class Lineitem {
         WebElement contractMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"docs-menu-Sales\"]/li[5]/menu-link/a")));
         contractMenu.click();
 
-
         WebElement contractCheckBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"contract-master-search-form1\"]/div[1]/div[1]/div[4]/div[1]/div/md-checkbox/div[1]")));
         contractCheckBox.click();
 
         Actions actions = new Actions(driver);
         actions.sendKeys(Keys.TAB).perform();
 
-        System.out.println("Enter the Contract number: ");
+        System.out.println("Enter the Contract number: \n");
         String contractNumber = scanner.nextLine();
         WebElement targetElement = driver.switchTo().activeElement();  // Get the active element
         targetElement.sendKeys(contractNumber);
-
 
 
         WebElement searchButtonContract = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"contract-master-search-form1\"]/div[2]/div/div[2]/button[1]")));
@@ -57,8 +55,52 @@ public class Lineitem {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
+        WebElement artAgencyDropDown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"contract-master-form\"]/md-content/div[2]/div/div[1]/a")));
+        artAgencyDropDown.click();
+
+        WebElement designDescription = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"Description\"]")));
+        designDescription.sendKeys("Test Design 9");
+
+        WebElement addNewDesignButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"createDesignBtn\"]")));
+        addNewDesignButton.click();
+
+       for (int i = 0; i < 4; i++ ){
+
+           actions.sendKeys(Keys.TAB).perform();
+           Thread.sleep(500);
+       }
+
+       actions.sendKeys(Keys.ENTER).perform();
 
 
+
+        WebElement uploadThumbnailButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"contract-master-form\"]/fieldset/md-content/div/div[3]/div/div/div/div[2]/button[1]")));
+        uploadThumbnailButton.click();
+
+        WebElement chooseFileButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("file")));
+
+        String filePath = "C:/Users/pranjal.p/Downloads/picture1.jpeg";
+
+        chooseFileButton.sendKeys(filePath);
+
+        for(int i = 0 ; i < 4; i++){
+
+            actions.sendKeys(Keys.TAB).perform();
+            Thread.sleep(500);
+        }
+
+        actions.sendKeys(Keys.ENTER).perform();
+
+        Thread.sleep(3000);
+
+        WebElement button = driver.findElement(By.id("editDesignSave"));
+        js.executeScript("arguments[0].click();", button);
+
+        Thread.sleep(2000);
+
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+
+        // Line item code pasted from here
         WebElement lineItemButton  = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"contract-master-form\"]/md-content/div[3]/div/div[2]/div/div[1]/div[3]/button[1]")));
         lineItemButton.click();
 
@@ -72,7 +114,7 @@ public class Lineitem {
 
         // Now that we're at the target element, send a value (e.g., entering text into an input field)
 
-        System.out.println("Enter the Line Item Description: ");
+        System.out.println("Enter the Line Item Description: \n");
         String lineItemDescriptionValue = scanner.nextLine();
         WebElement targetElements = driver.switchTo().activeElement();  // Get the active element
         targetElements.sendKeys(lineItemDescriptionValue);
@@ -80,16 +122,16 @@ public class Lineitem {
 
 
 
-        System.out.println("Enter the Campaign Name: ");
+        System.out.println("Enter the Campaign Name: \n");
         String campaignNameValue = scanner.nextLine();
         WebElement campaignName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("CLICampaign")));
         campaignName.sendKeys(campaignNameValue);
 
-        WebElement popFrequency = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"contract-master-form\"]/fieldset/div/md-content/div/div[1]/div/div[2]/div[3]/div[2]")));
+       /* WebElement popFrequency = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"contract-master-form\"]/fieldset/div/md-content/div/div[1]/div/div[2]/div[3]/div[2]")));
         popFrequency.click();
 
         actions.sendKeys(Keys.ARROW_DOWN).perform();
-        actions.sendKeys(Keys.ENTER).perform();
+        actions.sendKeys(Keys.ENTER).perform(); */
 
         WebElement saveLineItem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"fliSave\"]")));
         saveLineItem.click();
@@ -108,13 +150,13 @@ public class Lineitem {
         actions.sendKeys(Keys.TAB).perform();
         Thread.sleep(3000);
 
-        System.out.println("Enter the Face ID: ");
+        System.out.println("Enter the Face ID: \n");
         String faceIdValue = scanner.nextLine();
 
         WebElement targetElementsss = driver.switchTo().activeElement();
         targetElementsss.sendKeys(faceIdValue);
 
-        System.out.println("Enter the start date:");
+        System.out.println("Enter the start date: \n");
         String startDateValue = scanner.nextLine();
 
         WebElement startDate = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"startdate\"]")));
@@ -137,7 +179,7 @@ public class Lineitem {
                 .keyUp(Keys.SHIFT)
                 .perform();
 
-        System.out.println("Enter the intervals: ");
+        System.out.println("Enter the intervals: \n");
         String intervalValue = scanner.nextLine();
         WebElement intervals = driver.switchTo().activeElement();
         intervals.sendKeys(intervalValue);
@@ -160,12 +202,9 @@ public class Lineitem {
         WebElement addFaceToContract = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"addfaces\"]/div[1]/button")));
         addFaceToContract.click();
 
-
-
-
-
-
-
+        WebElement productionButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"contract-master-form\"]/div/div/ul/li[8]/button")));
+        productionButton.click();
 
     }
+
 }
